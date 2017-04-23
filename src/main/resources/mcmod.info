@@ -1,0 +1,16 @@
+[
+{
+  "modid": "subterraneandescent",
+  "name": "Subterranean Descent",
+  "description": "Go down and down and down and down...",
+  "version": "0.0.1-alpha",
+  "mcversion": "1.11.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Patreons"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
