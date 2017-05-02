@@ -38,10 +38,10 @@ public class SDChunkProviderBase implements IChunkGenerator
 	private NoiseGeneratorOctaves lperlinNoise1;
 	private NoiseGeneratorOctaves lperlinNoise2;
 	double[] pnr;
-    double[] ar;
-    double[] br;
-    double[] noiseData4;
-    double[] dr;
+	double[] ar;
+	double[] br;
+	double[] noiseData4;
+	double[] dr;
 	
 	public SDChunkProviderBase(World world)
 	{
@@ -59,11 +59,6 @@ public class SDChunkProviderBase implements IChunkGenerator
 	
 	private void prepareHeights(int x, int z, ChunkPrimer primer)
 	{
-		//int i = 4;
-		//int j = this.world.getSeaLevel() / 2 + 1;
-		//int k = 5;
-		//int l = 17;
-		//int i1 = 5;
 		this.buffer = this.getHeights(this.buffer, x * 4, 0, z * 4, 5, 17, 5);
 		
 		for (int j1 = 0; j1 < 4; ++j1)
@@ -72,7 +67,6 @@ public class SDChunkProviderBase implements IChunkGenerator
 			{
 				for (int l1 = 0; l1 < 16; ++l1)
 				{
-					//double d0 = 0.125D;
 					double d1 = this.buffer[((j1 + 0) * 5 + k1 + 0) * 17 + l1 + 0];
 					double d2 = this.buffer[((j1 + 0) * 5 + k1 + 1) * 17 + l1 + 0];
 					double d3 = this.buffer[((j1 + 1) * 5 + k1 + 0) * 17 + l1 + 0];
@@ -84,58 +78,34 @@ public class SDChunkProviderBase implements IChunkGenerator
 					
 					for (int i2 = 0; i2 < 8; ++i2)
 					{
-						//double d9 = 0.25D;
-                        //double d10 = d1;
-                        //double d11 = d2;
-                        //double d12 = (d3 - d1) * 0.25D;
-                        //double d13 = (d4 - d2) * 0.25D;
-
-                        for (int j2 = 0; j2 < 4; ++j2)
-                        {
-                            //double d14 = 0.25D;
-                            //double d15 = d10;
-                            //double d16 = (d11 - d10) * 0.25D;
-
-                            for (int k2 = 0; k2 < 4; ++k2)
-                            {
-                                IBlockState iblockstate = STONE;
-                                /*
-                                if (l1 * 8 + i2 < j)
-                                {
-                                    iblockstate = LAVA;
-                                }
-
-                                if (d15 > 0.0D)
-                                {
-                                    iblockstate = NETHERRACK;
-                                }
-                                */
-                                int l2 = j2 + j1 * 4;
-                                int i3 = i2 + l1 * 8;
-                                int j3 = k2 + k1 * 4;
-                                primer.setBlockState(l2, i3, j3, iblockstate);
-                                //d15 += d16;
-                            }
-
-                            //d10 += d12;
-                            //d11 += d13;
-                        }
-                        
-                        d1 += d5;
-                        d2 += d6;
-                        d3 += d7;
-                        d4 += d8;
-                    }
-                }
-            }
-        }
+						for (int j2 = 0; j2 < 4; ++j2)
+						{
+							for (int k2 = 0; k2 < 4; ++k2)
+							{
+								IBlockState iblockstate = STONE;
+								
+								int l2 = j2 + j1 * 4;
+								int i3 = i2 + l1 * 8;
+								int j3 = k2 + k1 * 4;
+								primer.setBlockState(l2, i3, j3, iblockstate);
+							}
+						}
+						
+						d1 += d5;
+						d2 += d6;
+						d3 += d7;
+						d4 += d8;
+					}
+				}
+			}
+		}
 	}
 	
 	public void buildSurfaces(int x, int z, ChunkPrimer primer)
 	{
 		if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.world)) return;
 		int i = this.world.getSeaLevel() + 1;
-		//double d0 = 0.03125D;
+		
 		this.depthBuffer = this.exculsivityNoiseGen.generateNoiseOctaves(this.depthBuffer, x * 16, z * 16, 0, 16, 16, 1, 0.0625D, 0.0625D, 0.0625D);
 		
 		for (int j = 0; j < 16; ++j)
@@ -145,7 +115,7 @@ public class SDChunkProviderBase implements IChunkGenerator
 				int l = (int)(this.depthBuffer[j + k * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
 				int i1 = -1;
 				
-				IBlockState iblockstate = STONE;
+				IBlockState iblockstate = AIR;
 				IBlockState iblockstate1 = STONE;
 				
 				for (int j1 = 127; j1 >= 0; --j1)
@@ -160,28 +130,16 @@ public class SDChunkProviderBase implements IChunkGenerator
 							{
 								if (i1 == -1)
 								{
-									if (l <= 0)
-                                    {
-                                        iblockstate = AIR;
-                                        iblockstate1 = STONE;
-                                    }
-                                    else if (j1 >= i - 4 && j1 <= i + 1)
-                                    {
-                                        iblockstate = STONE;
-                                        iblockstate1 = STONE;
-                                    }
+									i1 = l;
 									
-                                    i1 = l;
-
-                                    if (j1 >= i - 1)
-                                    {
-                                        primer.setBlockState(k, j1, j, iblockstate);
-                                    }
-                                    else
-                                    {
-                                        primer.setBlockState(k, j1, j, iblockstate1);
-                                    }
-                                    primer.setBlockState(k, j1, j, iblockstate);
+									if (j1 >= i - 1)
+									{
+										primer.setBlockState(k, j1, j, iblockstate);
+									}
+									else
+									{
+										primer.setBlockState(k, j1, j, iblockstate1);
+									}
 								}
 								else if (i1 > 0)
 								{

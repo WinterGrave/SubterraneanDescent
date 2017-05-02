@@ -16,6 +16,8 @@ public class SDConfig
 		
 		configuration.load();
 		
+		dimension1_id = configuration.getInt("dimension1_id", "DIMENSIONS", dimension1_id, 1, Integer.MAX_VALUE, "Sets dimension ID for dimension 1.");
+		
 		configuration.save();
 	}
 }
