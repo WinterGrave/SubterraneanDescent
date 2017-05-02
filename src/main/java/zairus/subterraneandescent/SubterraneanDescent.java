@@ -9,8 +9,10 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import zairus.subterraneandescent.block.SDBlocks;
+import zairus.subterraneandescent.command.server.CommandTeleport;
 import zairus.subterraneandescent.item.SDItems;
 import zairus.subterraneandescent.proxy.CommonProxy;
+import zairus.subterraneandescent.world.SDDimensions;
 
 @Mod(modid = SDConstants.MODID, name = SDConstants.MODID, version = SDConstants.VERSION)
 public class SubterraneanDescent
@@ -35,30 +37,32 @@ public class SubterraneanDescent
 		
 		SubterraneanDescent.proxy.preInit(event);
 		
-		//HTSoundEvents.register();
+		SDDimensions.register();
+		
+		//SDSoundEvents.register();
 	}
 	
 	@Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
 		SubterraneanDescent.proxy.init(event);
-		//Hermitron.packetPipeline.initalise();
+		//SubterraneanDescent.packetPipeline.initalise();
 		
 		SDItems.register();
 		SDBlocks.register();
 		
 		SubterraneanDescent.proxy.initBuiltinShapes();
 		
-		//HTCraftingHandler.addRecipes();
+		//SDCraftingHandler.addRecipes();
 		/*
-		HTEvents eventHandler = new HTEvents();
+		SDEvents eventHandler = new SDEvents();
 		MinecraftForge.EVENT_BUS.register(eventHandler);
 		MinecraftForge.TERRAIN_GEN_BUS.register(eventHandler);
 		MinecraftForge.ORE_GEN_BUS.register(eventHandler);
 		
-		HTAchievementList.initPages();
+		SDAchievementList.initPages();
 		
-		NetworkRegistry.INSTANCE.registerGuiHandler(Hermitron.instance, new GuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(SubterraneanDescent.instance, new GuiHandler());
 		*/
     }
 	
@@ -71,6 +75,6 @@ public class SubterraneanDescent
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		//event.registerServerCommand(new CommandScore());
+		event.registerServerCommand(new CommandTeleport());
 	}
 }
