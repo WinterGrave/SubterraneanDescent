@@ -29,10 +29,6 @@ public class CommandTeleport extends CommandBase
 			EntityPlayerMP player = (EntityPlayerMP)sender;
 			
 			SDDimensions.teleportPlayerToDimension(server, player, SDDimensions.SD_LEVEL1);
-			
-			//SDTeleporter teleporter = new SDTeleporter(server.worldServerForDimension(SDConfig.dimension1_id));
-			//PlayerList players = server.getPlayerList();
-			///players.transferPlayerToDimension(player, SDConfig.dimension1_id, teleporter);
 		}
 	}
 }

@@ -44,6 +44,11 @@ public class SDTeleporter extends Teleporter
 					{
 						if (this.tWorld.rand.nextInt(3) == 0 || ((x > - 7 && x < 7) && (z > -7 && z < 7)))
 							this.tWorld.setBlockToAir(pos.add(x, y, z));
+						
+						if (y == 0 && (x > - 7 && x < 7) && (z > -7 && z < 7))
+						{
+							this.tWorld.setBlockState(pos.add(x, y, z).down(), Blocks.COBBLESTONE.getDefaultState());
+						}
 					}
 				}
 			}

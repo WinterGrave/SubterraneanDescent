@@ -34,7 +34,7 @@ public class SDWorldProviderBase extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public Vec3d getFogColor(float x, float z)
 	{
-		return new Vec3d(0.029999999329447746D, 0.029999999329447746D, 0.029999999329447746D);
+		return new Vec3d(0.231372549D, 0.180392157D, 0.121568627D);
 	}
 	
 	@Override
