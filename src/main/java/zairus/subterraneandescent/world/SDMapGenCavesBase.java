@@ -10,6 +10,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
+import zairus.subterraneandescent.block.SDBlocks;
 
 /**
  * 
@@ -19,12 +20,13 @@ import net.minecraft.world.gen.MapGenBase;
 public class SDMapGenCavesBase extends MapGenBase
 {
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
+	protected static final IBlockState STONE = SDBlocks.MANTLE.getDefaultState();
 	
 	protected List<IBlockState> getBlockStateToDig()
 	{
 		List<IBlockState> states = new ArrayList<IBlockState>();
 		
-		states.add(Blocks.STONE.getDefaultState());
+		states.add(STONE);
 		
 		return states;
 	}

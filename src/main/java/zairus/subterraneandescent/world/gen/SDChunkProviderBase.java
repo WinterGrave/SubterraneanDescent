@@ -18,12 +18,13 @@ import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import zairus.subterraneandescent.block.SDBlocks;
 import zairus.subterraneandescent.world.SDMapGenCavesBase;
 
 public class SDChunkProviderBase implements IChunkGenerator
 {
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
-	protected static final IBlockState STONE = Blocks.STONE.getDefaultState();
+	protected static final IBlockState STONE = SDBlocks.MANTLE.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
 	
 	private final World world;

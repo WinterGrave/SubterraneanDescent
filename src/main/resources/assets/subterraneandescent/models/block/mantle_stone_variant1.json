@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "subterraneandescent:blocks/mantle_stone_variant1"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "subterraneandescent:mantle_stone" },
+            { "model": "subterraneandescent:mantle_stone_variant1" },
+            { "model": "subterraneandescent:mantle_stone_variant2" },
+            { "model": "subterraneandescent:mantle_stone", "y": 180 },
+            { "model": "subterraneandescent:mantle_stone_variant1", "y": 180 },
+            { "model": "subterraneandescent:mantle_stone_variant2", "y": 180 }
+        ]
+    }
+}
