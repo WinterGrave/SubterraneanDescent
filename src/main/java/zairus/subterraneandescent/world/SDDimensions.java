@@ -11,7 +11,7 @@ import zairus.subterraneandescent.SDConstants;
 public class SDDimensions
 {
 	public static final DimensionType SD_LEVEL1 = DimensionType.register(
-			SDConstants.MODID, 
+			SDConstants.MOD_ID, 
 			"_level1", 
 			SDConfig.dimension1_id, 
 			SDWorldProviderBase.class, 
@@ -24,7 +24,7 @@ public class SDDimensions
 	
 	public static void teleportPlayerToDimension(MinecraftServer server, EntityPlayerMP player, DimensionType dimension)
 	{
-		SDTeleporter teleporter = new SDTeleporter(server.worldServerForDimension(SDConfig.dimension1_id));
+		SDTeleporter teleporter = new SDTeleporter(server.getWorld(SDConfig.dimension1_id));
 		PlayerList players = server.getPlayerList();
 		players.transferPlayerToDimension(player, dimension.getId(), teleporter);
 	}

@@ -3,6 +3,8 @@ package zairus.subterraneandescent.world.gen;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -14,7 +16,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
@@ -183,7 +185,7 @@ public class SDChunkProviderBase implements IChunkGenerator
 	}
 	
 	@Override
-	public Chunk provideChunk(int x, int z)
+	public Chunk generateChunk(int x, int z)
 	{
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		
@@ -216,12 +218,6 @@ public class SDChunkProviderBase implements IChunkGenerator
 		Biome biome = this.world.getBiome(pos);
 		
 		return biome.getSpawnableList(creatureType);
-	}
-	
-	@Override
-	public BlockPos getStrongholdGen(World world, String structureName, BlockPos position, boolean b)
-	{
-		return null;
 	}
 	
 	@Override
@@ -312,5 +308,18 @@ public class SDChunkProviderBase implements IChunkGenerator
 		}
 		
 		return buffer;
+	}
+	
+	@Override
+	@Nullable
+	public BlockPos getNearestStructurePos(World world, String structureName, BlockPos position, boolean findUnexplored)
+	{
+		return null;
+	}
+	
+	@Override
+	public boolean isInsideStructure(World world, String structureName, BlockPos pos)
+	{
+		return false;
 	}
 }

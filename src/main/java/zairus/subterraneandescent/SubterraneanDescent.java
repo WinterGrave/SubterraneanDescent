@@ -8,24 +8,21 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import zairus.subterraneandescent.block.SDBlocks;
 import zairus.subterraneandescent.command.server.CommandTeleport;
-import zairus.subterraneandescent.item.SDItems;
-import zairus.subterraneandescent.proxy.CommonProxy;
 import zairus.subterraneandescent.world.SDDimensions;
 
-@Mod(modid = SDConstants.MODID, name = SDConstants.MODID, version = SDConstants.VERSION)
+@Mod(modid = SDConstants.MOD_ID, name = SDConstants.MOD_ID, version = SDConstants.MOD_VERSION)
 public class SubterraneanDescent
 {
-	@Mod.Instance(SDConstants.MODID)
+	@Mod.Instance(SDConstants.MOD_ID)
 	public static SubterraneanDescent instance;
 	
 	@SidedProxy(clientSide = SDConstants.CLIENT_PROXY, serverSide = SDConstants.COMMON_PROXY)
-	public static CommonProxy proxy;
+	public static SDProxy proxy;
 	
 	//public static PacketPipeline packetPipeline = new PacketPipeline();
 	
-	public static Logger logger;
+	private static Logger logger;
 	
 	//Creative tabs
 	
@@ -47,9 +44,6 @@ public class SubterraneanDescent
     {
 		SubterraneanDescent.proxy.init(event);
 		//SubterraneanDescent.packetPipeline.initalise();
-		
-		SDItems.register();
-		SDBlocks.register();
 		
 		SubterraneanDescent.proxy.initBuiltinShapes();
 		
@@ -76,5 +70,10 @@ public class SubterraneanDescent
 	public void serverLoad(FMLServerStartingEvent event)
 	{
 		event.registerServerCommand(new CommandTeleport());
+	}
+	
+	public static void logInfo(String message)
+	{
+		logger.info(message);
 	}
 }

@@ -1,17 +1,10 @@
-package zairus.subterraneandescent.proxy;
+package zairus.subterraneandescent;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import zairus.subterraneandescent.SDConstants;
 
-public class CommonProxy
+public class SDProxy
 {
 	public void preInit(FMLPreInitializationEvent e)
 	{
@@ -27,7 +20,7 @@ public class CommonProxy
 	{
 		;
 	}
-	
+	/*
 	public void registerItem(Item item, String name, int meta, boolean model)
 	{
 		if (meta == 0)
@@ -52,7 +45,7 @@ public class CommonProxy
 		registerBlock(block, name, model);
 		GameRegistry.registerTileEntity(clazz, tileEntityId);
 	}
-	
+	*/
 	public void initBuiltinShapes()
 	{
 	}
